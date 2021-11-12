@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}
+    Order page
+{% endblock %}
+
+{% block content %}
+<h3>Order Items</h3><br>
+   {% for user in User.objects(role=1) %}
+<div>
+    <div class="row" style="margin-top:20px; margin-left:20px">
+<div class="col-8">
+   <h2>Items</h2>
+   <br>
+   <table class="table table-hover table-dark">
+      <thead>
+         <tr>
+            <!-- Your Columns HERE -->
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+             <th scope="col">Quantity Required</th>
+            <th scope="col">Options</th>
+         </tr>
+      </thead>
+      <tbody>
+         <!-- Your rows inside the table HERE: -->
+         {% for item in Hotel.objects(owner=user.username) %}
+         <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}$</td>
+            <td>{{item.quantity}}</td>
+             <form method="POST">
+                  {{ form.hidden_tag() }}
+            <td>
+                  {{ form.quantity_needed(class="form-control", placeholder="Quantity") }}<br><br>
+
+            </td>
+             <td>
+                  <input id="order_item_name" name="order_item_name" type="hidden" value="{{ item.name}}">
+                  <input id="user_username" name="user_username" type="hidden" value="{{user.username}}">
+                 <input id="order_item_price" name="order_item_price" type="hidden" value="{{ item.price  }}">
+                 {{ form.submit(class="btn btn-outline-success btn-block") }}<br><br>
+            </td>
+             </form>
+
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+</div>
+       </div>
+       {% endfor %}
+{% endblock %}

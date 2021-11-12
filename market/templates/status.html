@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}
+    Status
+{% endblock %}
+
+{% block content %}
+
+   <h1>
+       Order Status
+   </h1>
+    <div class="row" style="margin-top:20px; margin-left:20px">
+   <div class="col-8">
+       <br>
+      <table class="table table-hover table-dark">
+         <thead>
+            <tr>
+               <!-- Your Columns HERE -->
+               <th scope="col">Name</th>
+               <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+               <th scope="col">Hotel</th>
+               <th scope="col">Status</th>
+               <th scope="col">Options</th>
+            </tr>
+         </thead>
+         <tbody>
+            <!-- Your rows inside the table HERE: -->
+            {% for order in Customer.objects(owner=current_user.username) %}
+            <tr>
+               {% if order.status != 1 %}
+               {% set hotel_name = hotel.objects(username=order.hotel_user).first().real_name %}
+               <td>{{order.name}}</td>
+               <td>{{order.price}}$</td>
+               <td>{{order.quantity}}</td>
+               <td>{{hotel_name}}</td>
+               {% if order.status == -1 %}
+               <td>Conformation Pending</td>
+               {% elif order.status == 0 %}
+               <td>Order Confirmed</td>
+               <td>
+                  <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <input id="received_item_id" name="received_item_id" type="hidden" value="{{ order.id }}">
+                    {{ form.submit(class="btn btn-outline-success btn-block") }}
+               </form>
+               </td>
+               {% endif %}
+               {% endif %}
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+{% endblock %}

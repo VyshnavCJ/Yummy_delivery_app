@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}
+Hotel Page
+{% endblock %}
+{% block content %}
+<h1>
+   Hotel
+</h1>
+<br>
+<h2>
+   <b>User Details</b>
+</h2>
+<br>
+<h4>
+   Name: {{ current_user.real_name }}<br><br>
+   Address: {{ current_user.address }}<br><br>
+   Phone Number: {{ current_user.phone_num }}<br><br>
+   Email ID: {{ current_user.email_address }}<br><br>
+</h4>
+<br>
+<h2>
+   <b>Activities:</b>
+</h2>
+<br>
+<button class="btn btn-outline-success">
+   <a href="{{ url_for('order_requests') }}">Requests</a>
+</button><br><br>
+<button class="btn btn-outline-success" data-toggle="modal" >
+<a href="{{ url_for('add_item') }}">Add Item</a>
+</button><br>
+<div class="row" style="margin-top:20px; margin-left:20px">
+<div class="col-8">
+   <h2>Items</h2>
+   <br>
+   <table class="table table-hover table-dark">
+      <thead>
+         <tr>
+            <!-- Your Columns HERE -->
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Options</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for item in Hotel.objects(owner=current_user.username) %}
+         <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}$</td>
+            <td>{{item.quantity}}</td>
+            <td>
+               <form method="POST">
+                  {{ form.hidden_tag() }}
+                  <input id="update_item" name="update_item" type="hidden" value="{{ item.name }}">
+                  {{ form.submit(class="btn btn-outline-success btn-block") }}<br><br>
+               </form>
+            </td>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+</div>
+{% endblock %}

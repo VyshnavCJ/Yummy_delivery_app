@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+Update Page
+{% endblock %}
+{% block content %}
+<h1>
+  Update Page
+
+</h1>
+<br>
+   <table class="table table-hover table-dark">
+      <thead>
+         <tr>
+            <!-- Your Columns HERE -->
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+         </tr>
+      </thead>
+      <tbody>
+         <form method="POST">
+            {{ form.hidden_tag() }}
+         <tr>
+            <td>{{item}}</td>
+            <td>
+                  {{ form.price(class="form-control", placeholder="New Price") }}<br><br>
+            </td>
+            <td>
+                  {{ form.quantity(class="form-control", placeholder="New Quantity") }}<br><br>
+            </td>
+            <td>
+                  {{ form.submit(class="btn btn-outline-success btn-block") }}<br><br>
+            </td>
+
+         </tr>
+         </form>
+      </tbody>
+   </table>
+</div>
+{% endblock %}
