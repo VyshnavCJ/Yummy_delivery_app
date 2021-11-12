@@ -1,9 +1,9 @@
-#Yummy Delivery Site
+# Yummy Delivery Site
 This Site is used to buy food item online on the customer side and to process the food delivery request by the food item provider side.
 This website use flask framework in backend and html and css in frontend.
 
 
-##Functions available
+## Functions available
 Buy food from different restaurant.
 Ability to know if your food request is accepted
 Ability to know deliver history
