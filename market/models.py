@@ -12,7 +12,7 @@ class User(db.Document, UserMixin):
     real_name = db.StringField(required=True)
     email_address = db.StringField(required=True, unique=True)
     phone_num = db.IntField(required=True, unique=True)
-    role = db.IntField(required=True)
+    role = db.IntField()
     address = db.StringField(required=True)
     password_hash = db.StringField(required=True, max_length=60)
 
