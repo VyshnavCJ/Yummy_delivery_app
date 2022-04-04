@@ -7,7 +7,7 @@ from flask_mongoengine import MongoEngine
 app = Flask(__name__)
 
 app.config["MONGODB_SETTINGS"] = {
-    "host": "mongodb+srv://cj:qazwsxedc@cluster0.rtzli.mongodb.net/delivery_app?retryWrites=true&w=majority"
+#     "host": "mongodb+srv://cj:qazwsxedc@cluster0.rtzli.mongodb.net/delivery_app?retryWrites=true&w=majority"
 }
 app.config['SECRET_KEY'] = 'b7a0786c03e7158170cdf7b9'
 db = MongoEngine(app)
