@@ -2,6 +2,7 @@
 This Site is used to buy food item online on the customer side and to process the food delivery request by the food item provider side.
 This website use flask framework in backend and html and css in frontend.
 
+[Yummy delivery app webpage link](https://yummy-delivery.herokuapp.com/)
 
 ## Functions available
 Buy food from different restaurant.
