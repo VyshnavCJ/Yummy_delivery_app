@@ -4,10 +4,17 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mongoengine import MongoEngine
 
+from dotenv import load_dotenv
+load_dotenv()
+
+import os
+
+url = os.environ.get("MONGO_URL")
+
 app = Flask(__name__)
 
 app.config["MONGODB_SETTINGS"] = {
-     "host": "localhost"
+     "host": url
 }
 app.config['SECRET_KEY'] = 'b7a0786c03e7158170cdf7b9'
 db = MongoEngine(app)
